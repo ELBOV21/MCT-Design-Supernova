@@ -46,5 +46,5 @@ To ensure Interface Control Document (ICD) compliance across all nodes, this pro
 │   ├── Manipulator_Arm/        # Quintic trajectory planning and PWM driving
 │   └── Vision_Camera/          # QR Detection (quirc) and HTTP stream
 │
-└── software/                   # PC-Side Applications
+└── GUI/                   # PC-Side Applications
     └── GUI_Dashboard/          # Python/JS Digital Twin interface
