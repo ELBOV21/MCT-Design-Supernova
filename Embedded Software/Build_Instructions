@@ -1,0 +1,29 @@
+## 🚀 Build & Flash Instructions
+
+This project is built using **PlatformIO** due to its multi-node monorepo structure. Because the hardware nodes rely on centralized payloads, you must compile each node individually while linking the shared directory.
+
+### 1. Prerequisites
+* Download and install [Visual Studio Code](https://code.visualstudio.com/).
+* Install the **PlatformIO IDE** extension inside VS Code.
+* Ensure you have the proper USB drivers installed for the ESP32 and ESP32-S3 boards.
+
+### 2. Opening a Node for Compilation
+**Important:** Do not open the root repository folder in PlatformIO, as it will not know which microcontroller to build for.
+
+1. Open VS Code.
+2. Go to **File > Open Folder...** (or click "Open Project" in PlatformIO Home).
+3. Navigate into the `firmware/` directory and open the specific hardware node you want to flash (e.g., `firmware/Mobile_Base`).
+
+### 3. Configuring the Shared Interface Control Document (ICD)
+Before building, verify that the compiler knows where to find the shared network payloads. Open the `platformio.ini` file in your selected node's folder and ensure the `build_flags` include the relative path to the `shared/` folder:
+
+```ini
+[env:esp32dev]
+platform = espressif32
+board = esp32dev
+framework = arduino
+monitor_speed = 115200
+
+; CRITICAL: Links the centralized network_payloads.h file
+build_flags = 
+    -I../../shared
